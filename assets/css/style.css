@@ -40,6 +40,7 @@ body {
 
 
 /* Bootstrap/Font Awesome Overrides */
+
 .navbar {
     z-index: 9999;
 }
@@ -48,13 +49,15 @@ body {
     text-transform:capitalize;
     padding: 1em;
 }
+.card-columns {
+    -webkit-column-count:4;
+    -moz-column-count:4;
+    column-count:4;
+}
+
 
 .dog-card-title {
     line-height: 1em;
-}
-
-.btn-secondary {
-    margin: 0.3em;
 }
 
 .container-fluid,.row, .col, .col-12,.col-2, .col-10 {
@@ -91,5 +94,4 @@ body {
       display: none; 
     } 
   }
-
   
