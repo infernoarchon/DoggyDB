@@ -5,12 +5,11 @@ window.onload = function() {
       dogapp.getgifs($(this).attr("data-name"),9)
       
     });
-
 };
 
 // Global Variables
-
-var gifOffset = 1
+var lastdog;
+var gifOffset = 1;
 var gifgroup = 0
 var giphydogs;
 var dogs = [
@@ -43,41 +42,46 @@ var dogapp = {
   },
   getgifs : function(d, maxCategories) {
     var gifCount = 0;
+    console.log(d)
+    console.log(lastdog)
+    console.log(gifOffset)
+    if(lastdog !== d) {
+      gifOffset=0
+    }
+    $("#gif-area").html("")
     function getNextGif() {
+        lastdog = d
         var currentgif = d
         if(gifCount < 10) {
         var dtrim = d.replace(/\s/g, '_');
         $.ajax({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + d + "_dog" + "&offset=" + gifOffset + "&limit=1&api_key=dc6zaTOxFJmzC",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + currentgif + "_dog&limit=1&offset=" + gifOffset + "&api_key=dc6zaTOxFJmzC",
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
                     gifOffset++;
                     gifCount++;
-                    console.log(gifOffset)
-                    console.log(response)
                     dimage = $("<img>")
                     dimage.addClass("gif")
+                    dimage.attr("id",currentgif + gifOffset)
                     dimage.attr("src",response.data[0].images.fixed_height_still.url)
                     dimage.attr("data-animate",response.data[0].images.fixed_height.url)
                     dimage.attr("data-still",response.data[0].images.fixed_height_still.url)
                     dimage.attr("data-state","still")
                     $("#gif-area").append(dimage)
                     getNextGif()
+                    dogapp.assigncontrol(currentgif, gifOffset)
                     }
             
     
             }
         })
       }
-      if(gifCount ===10) {
-        dogapp.assigncontrol()
-      }
-  }
+  }   
       getNextGif();
   },
-  assigncontrol : function() {
-    $(".gif").on("click", function() {
+  assigncontrol : function(x,y) {
+    $("#" + x + y).on("click", function() {
       var state = $(this).attr("data-state")
       console.log("hello there")
       if(state === "still") {
