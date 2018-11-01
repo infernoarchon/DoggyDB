@@ -1,19 +1,5 @@
 window.onload = function() {
-  dogapp.getdogs()
-//   $(".gif").on("click", function() {
-
-//     if(state === "still") {
-//       var animateurl = $(this).attr("data-animate")
-//       $(this).attr("src", animateurl)
-//       $(this).attr("data-state", "animate")
-//     }
-//     if(state === "animate") {
-//       var stillurl = $(this).attr("data-still")
-//       $(this).attr("src", stillurl)
-//       $(this).attr("data-state", "still")
-//     }
-    
-// });
+    dogapp.getdogs()
 
     $(".dog-card").on("click", function() {
       dogapp.getgifs($(this).attr("data-name"),9)
@@ -24,6 +10,7 @@ window.onload = function() {
 
 // Global Variables
 
+var gifOffset = 1
 var gifgroup = 0
 var giphydogs;
 var dogs = [
@@ -70,7 +57,11 @@ var dogapp = {
                     console.log(gifOffset)
                     console.log(response)
                     dimage = $("<img>")
+                    dimage.addClass("gif")
                     dimage.attr("src",response.data[0].images.fixed_height_still.url)
+                    dimage.attr("data-animate",response.data[0].images.fixed_height.url)
+                    dimage.attr("data-still",response.data[0].images.fixed_height_still.url)
+                    dimage.attr("data-state","still")
                     $("#gif-area").append(dimage)
                     getNextGif()
                     }
@@ -79,7 +70,27 @@ var dogapp = {
             }
         })
       }
+      if(gifCount ===10) {
+        dogapp.assigncontrol()
+      }
   }
       getNextGif();
   },
+  assigncontrol : function() {
+    $(".gif").on("click", function() {
+      var state = $(this).attr("data-state")
+      console.log("hello there")
+      if(state === "still") {
+        var animateurl = $(this).attr("data-animate")
+        $(this).attr("src", animateurl)
+        $(this).attr("data-state", "animate")
+      }
+      if(state === "animate") {
+        var stillurl = $(this).attr("data-still")
+        $(this).attr("src", stillurl)
+        $(this).attr("data-state", "still")
+      }
+      
+    });
+  }
 }
