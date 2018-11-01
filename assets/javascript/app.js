@@ -17,7 +17,13 @@ $(".gif").on("click", function() {
     
 });
 
-var topics = ["maltese", "shiba inu", "pomeranian", "malty poo", "golden retriever"]
+var topics = [
+  "maltese", 
+  "shiba inu", 
+  "pomeranian", 
+  "golden retriever",
+  "keeshond",
+]
 
 var gif = {
   gettopics : function() {
@@ -26,7 +32,7 @@ var gif = {
         // Then dynamicaly generating buttons
         var a = $("<a href='#'>");
         // Adding a class to our button
-        a.addClass("topic btn btn-primary");
+        a.addClass("topic btn btn-secondary");
         // Adding a data-attribute
         a.attr("data-name", currenttopic);
         // Providing the initial button text
