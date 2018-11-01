@@ -1,5 +1,5 @@
 window.onload = function() {
-  gif.gettopics()
+  dogapp.getdogs()
 };
 
 $(".gif").on("click", function() {
@@ -17,28 +17,32 @@ $(".gif").on("click", function() {
     
 });
 
-var topics = [
+var dogs = [
   "maltese", 
-  "shiba inu", 
+  "shiba", 
   "pomeranian", 
   "golden retriever",
   "keeshond",
+  "+ Add a Dog"
 ]
 
-var gif = {
-  gettopics : function() {
-    for (var i = 0; i < topics.length; i++) {
-        currenttopic = topics[i]
+var dogapp = {
+  getdogs : function() {
+    for (var i = 0; i < dogs.length; i++) {
+        currentdog = dogs[i]
         // Then dynamicaly generating buttons
-        var a = $("<a href='#'>");
+        var dcard = $("<div>");
         // Adding a class to our button
-        a.addClass("topic btn btn-secondary");
+        dcard.addClass("dog-card card");
         // Adding a data-attribute
-        a.attr("data-name", currenttopic);
+        dcard.attr("data-name", currentdog);
         // Providing the initial button text
-        a.text(currenttopic);
+        var dcardtitle = $("<div>");
+        dcardtitle.addClass("dog-card-title");
+        dcardtitle.text(currentdog);
+        dcard.append(dcardtitle)
         // Adding the button
-        $("#topic-area").append(a);
+        $("#dog-area").append(dcard);
     }
   }
 }

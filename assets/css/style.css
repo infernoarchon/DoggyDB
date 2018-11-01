@@ -3,29 +3,55 @@ body {
     background: #eee;
 }
 
-img {
-    height: 4000px;
-    max-width: 400px;
-}
 /* Custom Classes */
+
+.outer-wrapper {
+    margin-top: 56px !important;
+}
 .left-nav {
-    height: 100%;
-    -ms-flex: 0 0 230px;
-    flex: 0 0 230px;
+    position: fixed;
+    padding: 1em 0.5em 1em 1em !important;
+    width: 320px;
+    overflow-y: scroll;
+    top: 56px;
+    bottom: 0;
+    z-index: 100;
+    background: #eee;
+    border-right: 1px solid #ccc;
+}
+
+.left-nav-dead {
+    -ms-flex: 0 0 320px;
+    flex: 0 0 320px;
 }
 
 #gif-area {
     padding: 0.6em;
-    background: blue;
 }
 
 #topic-area {
     padding: 0.3em;
 }
 
+.main-area {
+    overflow-y: scroll;
+    height: 100%;
+}
 
 
 /* Bootstrap/Font Awesome Overrides */
+.navbar {
+    z-index: 9999;
+}
+
+.dog-card {
+    text-transform:capitalize;
+    padding: 1em;
+}
+
+.dog-card-title {
+    line-height: 1em;
+}
 
 .btn-secondary {
     margin: 0.3em;
@@ -43,7 +69,21 @@ img {
 .fa-dog {
     padding-right: 0.5em;
 }
+.frame::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
 
+.frame::-webkit-scrollbar {
+    width: 10px;
+}
+
+.frame::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #ccc
+}
+.frame::-webkit-scrollbar-track { 
+    background-color: #eee; 
+}
 
 /* Media Queries */
 @media (max-width: 690px) {
@@ -51,3 +91,5 @@ img {
       display: none; 
     } 
   }
+
+  
