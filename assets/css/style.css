@@ -67,7 +67,26 @@ body {
 }
 
 
+
 /* Bootstrap/Font Awesome Overrides */
+
+.dog-bio {
+    min-height: 200px;
+}
+.dog-img { 
+    background: url("../images/dogs.png");
+    background-size: auto 200px;
+    background-repeat: no-repeat;
+    background-position: right 20% bottom 100%;
+    background-color: white;
+}
+
+.intro-text {
+    line-height: 1.5;
+    
+    
+}
+
 
 .card-title {
     text-transform: capitalize;
@@ -92,10 +111,11 @@ body {
     line-height: 1em;
 }
 
-.container-fluid,.row, .col, .col-12,.col-2, .col-10 {
+.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10 {
     padding: 0;
     margin: 0;
 }
+
 
 .navbar-brand {
     color: white !important;
@@ -130,7 +150,7 @@ body {
 
 /* Media Queries */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .left-nav {
         display: none; 
       } 
