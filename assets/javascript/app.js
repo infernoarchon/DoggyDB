@@ -107,7 +107,7 @@ var dogapp = {
                     var k = response.data[0].images.fixed_width_still.height 
                     var l = response.data[0].images.fixed_height_still.width
                     var m = dcard.height()
-                    var q = ((k / l) + (m/j)) + 30
+                    var q = ((k / l) + (m/j)) + 31
                     console.log(q)
                     dicon.attr("style","margin-bottom:" + q + "%")
                     getNextGif()
