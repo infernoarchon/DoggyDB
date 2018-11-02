@@ -72,7 +72,6 @@ body {
     color: rgb(155, 155, 155);
 }
 
-
 .intro-card {
     column-count: 1 !important;
 }
@@ -84,12 +83,6 @@ body {
     text-transform:capitalize;
     padding: 1em;
 }
-.card-columns {
-    -webkit-column-count:4;
-    -moz-column-count:4;
-    column-count:4;
-}
-
 
 .dog-card-title {
     line-height: 1em;
@@ -111,9 +104,9 @@ body {
 .fa-play {
     font-size: 3em;
     color: #fff;
-    margin-bottom: 100px;
     text-shadow: 0 0 10px black;
 }
+
 .frame::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -131,11 +124,50 @@ body {
 }
 
 
-
 /* Media Queries */
-@media (max-width: 690px) {
+
+@media (max-width: 900px) {
     .left-nav {
-      display: none; 
-    } 
+        display: none; 
+      } 
+      .left-nav-dead {
+        display:none;
+      }
+}
+@media (min-width: 500px) {
+    .card-columns {
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+    }
   }
+
+@media (min-width: 600px) {
+    .card-columns {
+        -webkit-column-count:2;
+        -moz-column-count:2;
+        column-count:2;
+    }
+  }
+
+
+@media (min-width: 1200px) {
+    .card-columns {
+        -webkit-column-count:3;
+        -moz-column-count:3;
+        column-count:3;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .card-columns {
+        -webkit-column-count:4;
+        -moz-column-count:4;
+        column-count:4;
+    }
+  }
+
   
+  
+
+

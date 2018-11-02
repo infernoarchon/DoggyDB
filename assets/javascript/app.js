@@ -64,7 +64,6 @@ var dogapp = {
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
-                  console.log(response)
                     gifOffset++;
                     gifCount++;
                     dimage = $("<img>")
@@ -85,10 +84,18 @@ var dogapp = {
                     dcardbody.addClass("card-body")
                     dcardtitle = $("<h5>")
                     dcardtitle.addClass("card-title")
+                    
                     dcardtitle.text(response.data[0].title)
+                    if(response.data[0].title.length < 2) {
+                      dcardtitle.text("Untitled GIF")
+                    }
                     dcardtext = $("<p>")
                     dcardtext.addClass("card-text gif-text")
                     dcardtext.text(response.data[0].source_tld)
+                    if(response.data[0].source_tld.length < 2) {
+                      dcardtext.text("No source provided")
+                    }
+
                     dcard.append(dimage)
                     diconcontainer.append(dicon)
                     dcard.append(diconcontainer)
@@ -96,6 +103,13 @@ var dogapp = {
                     dcardbody.append(dcardtext)
                     dcard.append(dcardbody)
                     $("#gif-area").append(dcard)
+                    var j = dcardbody.height()
+                    var k = response.data[0].images.fixed_width_still.height 
+                    var l = response.data[0].images.fixed_height_still.width
+                    var m = dcard.height()
+                    var q = ((k / l) + (m/j)) + 30
+                    console.log(q)
+                    dicon.attr("style","margin-bottom:" + q + "%")
                     getNextGif()
                     dogapp.assigncontrol(dtrim, gifOffset)
                     }
