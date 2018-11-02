@@ -2,7 +2,7 @@ window.onload = function() {
     dogapp.getdogs()
 
     $(".dog-card").on("click", function() {
-      dogapp.getgifs($(this).attr("data-name"),9)
+      dogapp.getgifs($(this).attr("data-name"),10)
       
     });
 };
@@ -52,8 +52,8 @@ var dogapp = {
     function getNextGif() {
         lastdog = d
         var currentgif = d
-        if(gifCount < 10) {
-        var dtrim = d.replace(/\s/g, '_');
+        if(gifCount < 11) {
+        var dtrim = d.replace(/\s/g, '');
         $.ajax({
             url: "https://api.giphy.com/v1/gifs/search?q=" + currentgif + "_dog&limit=1&offset=" + gifOffset + "&api_key=dc6zaTOxFJmzC",
             method: "GET",
@@ -63,14 +63,14 @@ var dogapp = {
                     gifCount++;
                     dimage = $("<img>")
                     dimage.addClass("gif")
-                    dimage.attr("id",currentgif + gifOffset)
-                    dimage.attr("src",response.data[0].images.fixed_height_still.url)
-                    dimage.attr("data-animate",response.data[0].images.fixed_height.url)
-                    dimage.attr("data-still",response.data[0].images.fixed_height_still.url)
+                    dimage.attr("id",dtrim + gifOffset)
+                    dimage.attr("src",response.data[0].images.fixed_width_still.url)
+                    dimage.attr("data-animate",response.data[0].images.fixed_width.url)
+                    dimage.attr("data-still",response.data[0].images.fixed_width_still.url)
                     dimage.attr("data-state","still")
                     $("#gif-area").append(dimage)
                     getNextGif()
-                    dogapp.assigncontrol(currentgif, gifOffset)
+                    dogapp.assigncontrol(dtrim, gifOffset)
                     }
             
     
@@ -87,11 +87,13 @@ var dogapp = {
       if(state === "still") {
         var animateurl = $(this).attr("data-animate")
         $(this).attr("src", animateurl)
+        $(this).addClass("fullopacity")
         $(this).attr("data-state", "animate")
       }
       if(state === "animate") {
         var stillurl = $(this).attr("data-still")
         $(this).attr("src", stillurl)
+        $(this).removeClass("fullopacity")
         $(this).attr("data-state", "still")
       }
       

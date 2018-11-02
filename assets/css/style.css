@@ -4,7 +4,17 @@ body {
 }
 
 /* Custom Classes */
+.gif {
+    opacity: 0.8;
+}
 
+.gif:hover {
+    opacity: 1;
+}
+
+.fullopacity {
+    opacity: 1;
+}
 .outer-wrapper {
     margin-top: 56px !important;
 }
@@ -26,7 +36,7 @@ body {
 }
 
 #gif-area {
-    padding: 0.6em;
+    padding: 1em;
 }
 
 #topic-area {
