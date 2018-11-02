@@ -5,9 +5,6 @@ window.onload = function() {
       // $("#intro-card").addClass("invisible")
       dogapp.getgifs($(this).attr("data-name"),gifLimit)
 
-    
-
-      
     });
     $(".navbar-brand").on("click", function() {
       location.reload()
@@ -17,15 +14,16 @@ window.onload = function() {
 // Global Variables
 var gifLimit = 31;
 var lastdog;
-var gifOffset = 1;
+var gifOffset = 0;
 var gifgroup = 0
 var giphydogs;
+var skipgif = false;
 var dogs = [
   "maltese", 
   "shiba", 
   "pomeranian", 
   "golden retriever",
-  "german shepherd",
+  "chihuahua",
   "+ Add a Dog"
 ]
 
@@ -49,9 +47,13 @@ var dogapp = {
     }
   },
   getgifs : function(d, maxCategories) {
+    skipgif = false
     var gifCount = 0;
-    if(lastdog !== d) {
-      gifOffset=1
+    console.log(gifOffset)
+    dogapp.skipgif(d,"maltese")
+    if(lastdog !== d && lastdog && skipgif===false) {
+      gifOffset=0
+      console.log("offset reset")
     }
     $("#gif-area").html("")
     function getNextGif() {
@@ -108,7 +110,6 @@ var dogapp = {
                     var l = response.data[0].images.fixed_height_still.width
                     var m = dcard.height()
                     var q = ((k / l) + (m/j)) + 31
-                    console.log(q)
                     dicon.attr("style","margin-bottom:" + q + "%")
                     getNextGif()
                     dogapp.assigncontrol(dtrim, gifOffset)
@@ -149,5 +150,11 @@ var dogapp = {
       }
       
     });
+  },
+  skipgif : function(dog, name) {
+    if(dog === name && lastdog !== name) {
+      gifOffset=1
+      skipgif = true
+    }
   }
 }
