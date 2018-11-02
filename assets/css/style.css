@@ -4,8 +4,17 @@ body {
 }
 
 /* Custom Classes */
+
+.invisible {
+    display: none;
+}
+
 .gif {
     opacity: 0.8;
+}
+
+#gif-area {
+    margin-top: 1em;
 }
 
 .gif:hover {
@@ -35,10 +44,6 @@ body {
     flex: 0 0 320px;
 }
 
-#gif-area {
-    padding: 1em;
-}
-
 #topic-area {
     padding: 0.3em;
 }
@@ -46,11 +51,14 @@ body {
 .main-area {
     overflow-y: scroll;
     height: 100%;
+    padding: 1em !important;
 }
 
 
 /* Bootstrap/Font Awesome Overrides */
-
+.intro-card {
+    column-count: 1 !important;
+}
 .navbar {
     z-index: 9999;
 }
@@ -97,6 +105,8 @@ body {
 .frame::-webkit-scrollbar-track { 
     background-color: #eee; 
 }
+
+
 
 /* Media Queries */
 @media (max-width: 690px) {

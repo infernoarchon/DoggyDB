@@ -2,12 +2,15 @@ window.onload = function() {
     dogapp.getdogs()
 
     $(".dog-card").on("click", function() {
-      dogapp.getgifs($(this).attr("data-name"),10)
+      // $("#intro-card").addClass("invisible")
+      dogapp.getgifs($(this).attr("data-name"),gifLimit)
+
       
     });
 };
 
 // Global Variables
+var gifLimit = 31;
 var lastdog;
 var gifOffset = 1;
 var gifgroup = 0
@@ -17,7 +20,7 @@ var dogs = [
   "shiba", 
   "pomeranian", 
   "golden retriever",
-  "keeshond",
+  "russell terrier",
   "+ Add a Dog"
 ]
 
@@ -42,33 +45,45 @@ var dogapp = {
   },
   getgifs : function(d, maxCategories) {
     var gifCount = 0;
-    console.log(d)
-    console.log(lastdog)
-    console.log(gifOffset)
     if(lastdog !== d) {
-      gifOffset=0
+      gifOffset=1
     }
     $("#gif-area").html("")
     function getNextGif() {
         lastdog = d
         var currentgif = d
-        if(gifCount < 11) {
+        if(gifCount <= gifLimit) {
         var dtrim = d.replace(/\s/g, '');
         $.ajax({
             url: "https://api.giphy.com/v1/gifs/search?q=" + currentgif + "_dog&limit=1&offset=" + gifOffset + "&api_key=dc6zaTOxFJmzC",
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
+                  console.log(gifOffset)
                     gifOffset++;
                     gifCount++;
                     dimage = $("<img>")
-                    dimage.addClass("gif")
+                    dimage.addClass("gif card-img-top")
                     dimage.attr("id",dtrim + gifOffset)
                     dimage.attr("src",response.data[0].images.fixed_width_still.url)
                     dimage.attr("data-animate",response.data[0].images.fixed_width.url)
                     dimage.attr("data-still",response.data[0].images.fixed_width_still.url)
                     dimage.attr("data-state","still")
-                    $("#gif-area").append(dimage)
+                    dcard = $("<div>")
+                    dcard.addClass("card")
+                    dcardbody = $("<div>")
+                    dcardbody.addClass("card-body")
+                    dcardtitle = $("<h5>")
+                    dcardtitle.addClass("card-title")
+                    dcardtitle.text(response.data[0].title)
+                    dcardtext = $("<p>")
+                    dcardtext.addClass("card-text")
+                    dcardtext.text(response.data[0].source_tld)
+                    dcard.append(dimage)
+                    dcardbody.append(dcardtitle)
+                    dcardbody.append(dcardtext)
+                    dcard.append(dcardbody)
+                    $("#gif-area").append(dcard)
                     getNextGif()
                     dogapp.assigncontrol(dtrim, gifOffset)
                     }
