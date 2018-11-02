@@ -5,7 +5,12 @@ window.onload = function() {
       // $("#intro-card").addClass("invisible")
       dogapp.getgifs($(this).attr("data-name"),gifLimit)
 
+    
+
       
+    });
+    $(".navbar-brand").on("click", function() {
+      location.reload()
     });
 };
 
@@ -20,7 +25,7 @@ var dogs = [
   "shiba", 
   "pomeranian", 
   "golden retriever",
-  "russell terrier",
+  "french bulldog",
   "+ Add a Dog"
 ]
 
