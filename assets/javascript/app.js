@@ -25,7 +25,7 @@ var dogs = [
   "shiba", 
   "pomeranian", 
   "golden retriever",
-  "french bulldog",
+  "german shepherd",
   "+ Add a Dog"
 ]
 

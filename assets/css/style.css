@@ -68,6 +68,10 @@ body {
 
 
 /* Bootstrap/Font Awesome Overrides */
+
+.card-title {
+    text-transform: capitalize;
+}
 .gif-text {
     color: rgb(155, 155, 155);
 }
