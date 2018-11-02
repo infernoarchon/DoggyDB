@@ -54,8 +54,25 @@ body {
     padding: 1em !important;
 }
 
+.icon-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
 
 /* Bootstrap/Font Awesome Overrides */
+.gif-text {
+    color: rgb(155, 155, 155);
+}
+
+
 .intro-card {
     column-count: 1 !important;
 }
@@ -89,6 +106,13 @@ body {
 
 .fa-dog {
     padding-right: 0.5em;
+}
+
+.fa-play {
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 100px;
+    text-shadow: 0 0 10px black;
 }
 .frame::-webkit-scrollbar {
     -webkit-appearance: none;

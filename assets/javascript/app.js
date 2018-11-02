@@ -64,7 +64,7 @@ var dogapp = {
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
-                  console.log(gifOffset)
+                  console.log(response)
                     gifOffset++;
                     gifCount++;
                     dimage = $("<img>")
@@ -74,6 +74,11 @@ var dogapp = {
                     dimage.attr("data-animate",response.data[0].images.fixed_width.url)
                     dimage.attr("data-still",response.data[0].images.fixed_width_still.url)
                     dimage.attr("data-state","still")
+                    diconcontainer = $("<div>")
+                    diconcontainer.addClass("icon-container invisible d-flex align-items-center justify-content-center")
+                    diconcontainer.attr("id",dtrim + gifOffset + "icon")
+                    dicon = $("<i>")
+                    dicon.addClass("fas fa-play")
                     dcard = $("<div>")
                     dcard.addClass("card")
                     dcardbody = $("<div>")
@@ -82,9 +87,11 @@ var dogapp = {
                     dcardtitle.addClass("card-title")
                     dcardtitle.text(response.data[0].title)
                     dcardtext = $("<p>")
-                    dcardtext.addClass("card-text")
+                    dcardtext.addClass("card-text gif-text")
                     dcardtext.text(response.data[0].source_tld)
                     dcard.append(dimage)
+                    diconcontainer.append(dicon)
+                    dcard.append(diconcontainer)
                     dcardbody.append(dcardtitle)
                     dcardbody.append(dcardtext)
                     dcard.append(dcardbody)
@@ -100,11 +107,20 @@ var dogapp = {
   }   
       getNextGif();
   },
-  assigncontrol : function(x,y) {
+  assigncontrol : function(x,y,z) {
+    $("#" + x + y).on("mouseover", function() {
+      var state = $(this).attr("data-state")
+      if(state === "still") {
+      $("#" + x + y + "icon").removeClass("invisible")
+      }
+    })
+    $("#" + x + y).on("mouseout", function() {
+      $("#" + x + y + "icon").addClass("invisible")
+    })
     $("#" + x + y).on("click", function() {
       var state = $(this).attr("data-state")
-      console.log("hello there")
       if(state === "still") {
+        $("#" + x + y + "icon").addClass("invisible")
         var animateurl = $(this).attr("data-animate")
         $(this).attr("src", animateurl)
         $(this).addClass("fullopacity")
@@ -112,6 +128,7 @@ var dogapp = {
       }
       if(state === "animate") {
         var stillurl = $(this).attr("data-still")
+        $("#" + x + y + "icon").removeClass("invisible")
         $(this).attr("src", stillurl)
         $(this).removeClass("fullopacity")
         $(this).attr("data-state", "still")
