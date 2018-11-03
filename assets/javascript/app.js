@@ -34,7 +34,7 @@ var dogapp = {
         // Then dynamicaly generating buttons
         var dcard = $("<div>");
         // Adding a class to our button
-        dcard.addClass("dog-card btn btn-secondary btn-block text-left");
+        dcard.addClass("dog-card btn btn-dark btn-block text-left");
         // Adding a data-attribute
         dcard.attr("data-name", currentdog);
         // Providing the initial button text

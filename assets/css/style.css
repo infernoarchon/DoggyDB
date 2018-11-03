@@ -1,6 +1,6 @@
 /* Global Variables */
 body {
-    background: #eee;
+    background-color: #343A40
 }
 
 /* Custom Classes */
@@ -30,18 +30,16 @@ body {
 .left-nav {
     position: fixed;
     padding: 1em 0.5em 1em 1em !important;
-    width: 320px;
+    width: 280px;
     overflow-y: scroll;
     top: 56px;
     bottom: 0;
     z-index: 100;
-    background: #eee;
-    border-right: 1px solid #ccc;
 }
 
 .left-nav-dead {
-    -ms-flex: 0 0 320px;
-    flex: 0 0 320px;
+    -ms-flex: 0 0 280px;
+    flex: 0 0 280px;
 }
 
 #topic-area {
@@ -70,26 +68,32 @@ body {
 
 /* Bootstrap/Font Awesome Overrides */
 
+.card {
+    border: none;
+}
+
 .dog-bio {
-    min-height: 200px;
+    min-height: 220px;
 }
 .dog-img { 
-    background: url("../images/dogs.png");
-    background-size: auto 200px;
+    background: url("../images/maltese.svg");
+    background-size: auto 80%;
     background-repeat: no-repeat;
-    background-position: right 20% bottom 100%;
-    background-color: white;
+    background-position: right 30% bottom 50%;
 }
 
 .intro-text {
     line-height: 1.5;
-    
+    color: white;
     
 }
-
+.card-body {
+    background-color: rgba(52, 58, 64, 0.92);
+}
 
 .card-title {
     text-transform: capitalize;
+    color: white;
 }
 .gif-text {
     color: rgb(155, 155, 155);
@@ -97,6 +101,7 @@ body {
 
 .intro-card {
     column-count: 1 !important;
+    background-color: #343A40
 }
 .navbar {
     z-index: 9999;
@@ -111,7 +116,7 @@ body {
     line-height: 1em;
 }
 
-.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10 {
+.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10, .col-8 {
     padding: 0;
     margin: 0;
 }
@@ -141,11 +146,11 @@ body {
 
 .frame::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #ccc
+    background-color: rgba(43, 77, 80, 0.4);
 }
-.frame::-webkit-scrollbar-track { 
-    background-color: #eee; 
-}
+/* .frame::-webkit-scrollbar-track { 
+    background-color: rgba(43, 77, 80, 0.4);
+} */
 
 
 /* Media Queries */
@@ -175,7 +180,7 @@ body {
   }
 
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
     .card-columns {
         -webkit-column-count:3;
         -moz-column-count:3;
