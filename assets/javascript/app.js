@@ -2,7 +2,7 @@ window.onload = function() {
     dogapp.getdogs()
 
     $(".dog-card").on("click", function() {
-      // $("#intro-card").addClass("invisible")
+      $("#intro-wrapper").addClass("invisible")
       dogapp.getgifs($(this).attr("data-name"),gifLimit)
 
     });
