@@ -1,9 +1,13 @@
 /* Global Variables */
 body {
-    background-color: #343A40
+    background-color: #eee;
 }
 
 /* Custom Classes */
+.intro-card {
+    column-count: 1 !important;
+    background-color: rgba(129, 92, 165, 0.831) !important;
+}
 
 .invisible {
     display: none;
@@ -68,6 +72,10 @@ body {
 
 
 /* Bootstrap/Font Awesome Overrides */
+.card-group {
+    border-bottom: 1px solid #ccc;
+}
+
 
 .card {
     border: none;
@@ -75,6 +83,8 @@ body {
 
 .dog-bio {
     min-height: 220px;
+    border-radius: 0px !important;
+    background-color: transparent !important;
 }
 .dog-img { 
     background: url("../images/maltese.svg");
@@ -85,32 +95,29 @@ body {
 
 .intro-text {
     line-height: 1.5;
-    color: white;
+    color: #fff;
     
 }
-.card-body {
-    background-color: rgba(52, 58, 64, 0.92);
+#gif-area .card-body {
+    background-color: #fff;
 }
 
 .card-title {
     text-transform: capitalize;
-    color: white;
 }
 .gif-text {
-    color: rgb(155, 155, 155);
+    color: rgb(213, 213, 213);
 }
 
-.intro-card {
-    column-count: 1 !important;
-    background-color: #343A40
-}
 .navbar {
     z-index: 9999;
+    background-color: #eee;
 }
 
 .dog-card {
     text-transform:capitalize;
     padding: 1em;
+    background-color: #eee;
 }
 
 .dog-card-title {
@@ -120,11 +127,6 @@ body {
 .container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10, .col-8 {
     padding: 0;
     margin: 0;
-}
-
-
-.navbar-brand {
-    color: white !important;
 }
 
 .fa-dog {

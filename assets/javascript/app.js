@@ -34,7 +34,7 @@ var dogapp = {
         // Then dynamicaly generating buttons
         var dcard = $("<div>");
         // Adding a class to our button
-        dcard.addClass("dog-card btn-dark bg-gradient btn-block text-left");
+        dcard.addClass("dog-card btn-light btn border-0 btn-block text-left");
         // Adding a data-attribute
         dcard.attr("data-name", currentdog);
         // Providing the initial button text
@@ -81,7 +81,7 @@ var dogapp = {
                     dicon = $("<i>")
                     dicon.addClass("fas fa-play")
                     dcard = $("<div>")
-                    dcard.addClass("card")
+                    dcard.addClass("card gif-card")
                     dcardbody = $("<div>")
                     dcardbody.addClass("card-body")
                     dcardtitle = $("<h5>")
