@@ -24,15 +24,12 @@ body {
 .fullopacity {
     opacity: 1;
 }
-.outer-wrapper {
-    margin-top: 56px !important;
-}
 .left-nav {
     position: fixed;
-    padding: 1em 0.5em 1em 1em !important;
+    padding: 5em 0.5em 1em 1em !important;
     width: 280px;
     overflow-y: scroll;
-    top: 56px;
+    top: 0px;
     bottom: 0;
     z-index: 100;
 }
