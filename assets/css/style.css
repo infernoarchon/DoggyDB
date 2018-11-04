@@ -3,7 +3,12 @@ body {
     background-color: #eee;
 }
 
+h5 {
+    font-size: 1em;
+}
+
 /* Custom Classes */
+
 .intro-card {
     column-count: 1 !important;
     background-color: rgba(129, 92, 165, 0.831) !important;
@@ -30,7 +35,7 @@ body {
 }
 .left-nav {
     position: fixed;
-    padding: 5em 0.5em 1em 1em !important;
+    padding: 0.53em 0.5em 1em 1em !important;
     width: 280px;
     overflow-y: scroll;
     top: 0px;
@@ -69,6 +74,9 @@ body {
     pointer-events: none;
 }
 
+.autocomplete div {
+    text-transform: capitalize;
+}
 
 
 /* Bootstrap/Font Awesome Overrides */
@@ -81,6 +89,10 @@ body {
     border: none;
 }
 
+.left-nav-wrapper {
+    padding-top: 1.25em;
+}
+
 .dog-bio {
     min-height: 220px;
     border-radius: 0px !important;
@@ -90,7 +102,7 @@ body {
     background: url("../images/maltese.svg");
     background-size: auto 80%;
     background-repeat: no-repeat;
-    background-position: right 30% bottom 50%;
+    background-position: right 20% bottom 50%;
 }
 
 .intro-text {
@@ -106,12 +118,12 @@ body {
     text-transform: capitalize;
 }
 .gif-text {
-    color: rgb(213, 213, 213);
+    color: #999;
+    font-size: 0.9em;
 }
 
 .navbar {
     z-index: 9999;
-    background-color: #eee;
 }
 
 .dog-card {
@@ -119,12 +131,24 @@ body {
     padding: 1em;
     background-color: #eee;
 }
+.dog-card-added {
+    text-transform:capitalize;
+    padding: 1em;
+    background-color: #eee;
+}
+
+.dog-button {
+    text-transform:capitalize;
+    padding: 1em;
+    background-color: #eee;
+    border: 0;
+}
 
 .dog-card-title {
     line-height: 1em;
 }
 
-.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10, .col-8 {
+.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-5, .col-10 {
     padding: 0;
     margin: 0;
 }
@@ -154,6 +178,37 @@ body {
 /* .frame::-webkit-scrollbar-track { 
     background-color: rgba(43, 77, 80, 0.4);
 } */
+
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+  }
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9; 
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
+  }
 
 
 /* Media Queries */

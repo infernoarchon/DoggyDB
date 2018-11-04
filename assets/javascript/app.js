@@ -1,14 +1,55 @@
 window.onload = function() {
+    autocomplete(document.getElementById("myInput"), dogdir);
+    $("#add-dog-form").hide();
     dogapp.getdogs()
+    dogapp.getlist()
 
+// On Click Events
     $(".dog-card").on("click", function() {
       $("#intro-wrapper").addClass("invisible")
       dogapp.getgifs($(this).attr("data-name"),gifLimit)
-
+      console.log(gifOffset)
     });
     $(".navbar-brand").on("click", function() {
-      location.reload()
+      $("#intro-wrapper").removeClass("invisible")
+      $("#gif-area").html('')
     });
+    $("#cancel-add").click(function(){
+      $("#add-dog-form").hide();
+    });
+    $("#add-dog").click(function(){
+      $("#add-dog-form").show();
+      $("#myInput").focus(function() {
+      });
+    });
+    $("#submit-dog").click(function(){
+      event.preventDefault();
+      $("#add-dog-form").hide();
+      var getdog = $("#myInput").val().trim()
+      $("#myInput").val('')
+      dogapp.adddog(getdog)
+      $(".dog-card-added").on("click", function() {
+        $("#intro-wrapper").addClass("invisible")
+        dogapp.getgifs($(this).attr("data-name"),gifLimit)
+        console.log(gifOffset)
+      });
+    });
+    $("#surprise-me").click(function() {
+      var randomdog = dogdir[Math.floor(Math.random() * dogdir.length)];
+      console.log(randomdog)
+      dogapp.getgifs(randomdog,gifLimit)
+    })
+// Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+      // Trigger the button element with a click
+      document.getElementById("submit-dog").click();
+  }
+});
+    
 };
 
 // Global Variables
@@ -19,15 +60,29 @@ var gifgroup = 0
 var giphydogs;
 var skipgif = false;
 var dogs = [
-  "maltese", 
-  "shiba", 
-  "pomeranian", 
-  "golden retriever",
-  "chihuahua",
-  "+ Add a Dog"
+  "Maltese", 
+  "Shiba Inu", 
+  "Pomeranian", 
+  "Golden Retriever",
+  "French Bulldog"
 ]
+var alldogs = {
+  "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberg", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mix": "mix", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-miniature": "miniature poodle", "poodle-standard": "standard poodle", "poodle-toy": "toy poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
+}
+
+var dogdir = []
+
+var input = document.getElementById("myInput");
 
 var dogapp = {
+  getlist : function () {
+    for (var key in alldogs) {
+      if (alldogs.hasOwnProperty(key)) {
+          dogdir.push(alldogs[key])
+      }   
+  }
+  console.log(dogdir)
+  },
   getdogs : function() {
     for (var i = 0; i < dogs.length; i++) {
         currentdog = dogs[i]
@@ -46,14 +101,28 @@ var dogapp = {
         $("#dog-area").append(dcard);
     }
   },
+  adddog : function(d) {
+        currentdog = d
+        // Then dynamicaly generating buttons
+        var dcard = $("<div>");
+        // Adding a class to our button
+        dcard.addClass("dog-card-added btn-light btn border-0 btn-block text-left");
+        // Adding a data-attribute
+        dcard.attr("data-name", currentdog);
+        // Providing the initial button text
+        var dcardtitle = $("<div>");
+        dcardtitle.addClass("dog-card-title");
+        dcardtitle.text(currentdog);
+        dcard.append(dcardtitle)
+        // Adding the button
+        $("#dog-area").append(dcard);
+  },
   getgifs : function(d, maxCategories) {
     skipgif = false
     var gifCount = 0;
-    console.log(gifOffset)
-    dogapp.skipgif(d,"maltese")
+    dogapp.skipgif(d,"Maltese")
     if(lastdog !== d && lastdog && skipgif===false) {
       gifOffset=0
-      console.log("offset reset")
     }
     $("#gif-area").html("")
     function getNextGif() {
@@ -81,7 +150,7 @@ var dogapp = {
                     dicon = $("<i>")
                     dicon.addClass("fas fa-play")
                     dcard = $("<div>")
-                    dcard.addClass("card gif-card")
+                    dcard.addClass("card gif-card shadow-sm")
                     dcardbody = $("<div>")
                     dcardbody.addClass("card-body")
                     dcardtitle = $("<h5>")
@@ -157,4 +226,101 @@ var dogapp = {
       skipgif = true
     }
   }
+}
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
 }
