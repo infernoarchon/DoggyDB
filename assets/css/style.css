@@ -104,6 +104,13 @@ h3 {
     min-height: 220px;
     border-radius: 0px !important;
     background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#surprise-me {
+    width: 10em !important;
 }
 
 #dog-pic {
@@ -117,6 +124,8 @@ h3 {
 #dog-bio-title, #dog-bio-text {
     line-height: 1.5;
 }
+
+
 
 #gif-area .card-body {
     background-color: #fff;
