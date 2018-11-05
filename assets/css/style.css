@@ -45,7 +45,7 @@ h3 {
     padding: 0.53em 0.5em 1em 1em !important;
     width: 280px;
     overflow-y: scroll;
-    top: 0px;
+    top: 64px;
     bottom: 0;
     z-index: 100;
 }
@@ -85,6 +85,12 @@ h3 {
     text-transform: capitalize;
 }
 
+.fixed-logo {
+    position: fixed;
+    top: 8px;
+    left: 16px;
+}
+
 /* Bootstrap/Font Awesome Overrides */
 
 
@@ -92,9 +98,7 @@ h3 {
     border: none;
 }
 
-.left-nav-wrapper {
-    padding-top: 1.25em;
-}
+
 
 .dog-bio {
     min-height: 220px;
