@@ -53,6 +53,7 @@ h3 {
 .left-nav-dead {
     -ms-flex: 0 0 280px;
     flex: 0 0 280px;
+    z-index: -1;
 }
 #surprise-me {
     margin-top: 1em;
