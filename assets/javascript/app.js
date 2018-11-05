@@ -67,9 +67,9 @@ var dogs = [
   "golden retriever",
   "french bulldog"
 ]
-var doghelper = ["maltese","dalmatian", "boxer", "african", "samoyed", "newfoundland"]
+var doghelper = ["maltese","dalmatian", "boxer", "african", "samoyed", "newfoundland", "malinois", "mexican hairless", "papillon"]
 var spanielhelper = ["clumber"]
-var australianhelper = ["kelpie"]
+var australianhelper = ["kelpie", "silky terrier"]
 var welshcorgihelper = ["pembroke", "cardigan corgi"]
 var softcoathelper = ["wheaten terrier"]
 var alaskanhelper = ["malamute"]
@@ -92,9 +92,15 @@ var longhairedhelper = ["german longhair pointer"]
 var cairnhelper = ["cairn"]
 var westhighlandhelper = ["westhighland terrier"]
 var terrierhelper = ["airedale"]
+var akitahelper = ["akita"]
+var brabanconhelper = ["brabancon"]
+var bouvierhelper = ["bouvier"]
+var sheepdoghelper = ["english sheepdog"]
+var coonhoundhelper = ["redbone"]
+var dandiehelper = ["dandie terrier"]
 
 var alldogs = {
-  "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberg", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-standard": "poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba inu", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
+  "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberger", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-standard": "poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba inu", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
 }
 var dogdir = []
 
@@ -254,7 +260,11 @@ var dogapp = {
   },
   getbio : function(d) {
     $("#dog-intro-card").removeClass("intro-card")
+    $("#dog-intro-card").removeClass("col-5")
+    $("#dog-intro-card").addClass("col-8")
     $("#dog-pic").removeClass("dog-img intro-card")
+    $("#dog-pic").removeClass("col-7")
+    $("#dog-pic").addClass("col-4")
     $("#dog-bio-title").removeClass("intro-text")
     $("#dog-bio-text").removeClass("intro-text")
     $("#surprise-me").hide()
@@ -383,6 +393,30 @@ var dogapp = {
         d = d + " terrier"
         return d
       }
+      if (akitahelper.includes(d)) {
+        d = d + " (dog)"
+        return d
+      }
+      if (brabanconhelper.includes(d)) {
+        d = "griffon bruxellois"
+        return d
+      }
+      if (bouvierhelper.includes(d)) {
+        d = d + " des Flandres"
+        return d
+      }
+      if (sheepdoghelper.includes(d)) {
+        d = "Old " + d
+        return d
+      }
+      if (coonhoundhelper.includes(d)) {
+        d = d + " coonhound"
+        return d
+      }
+      if (dandiehelper.includes(d)) {
+        d = "dandie dinmont terrier"
+        return d
+      }
 
       else{
       return d
@@ -390,7 +424,11 @@ var dogapp = {
     },
     resetbio : function () {
     $("#dog-intro-card").addClass("intro-card")
+    $("#dog-intro-card").removeClass("col-8")
+    $("#dog-intro-card").addClass("col-5")
     $("#dog-pic").addClass("dog-img intro-card")
+    $("#dog-pic").removeClass("col-4")
+    $("#dog-pic").addClass("col-7")
     $("#dog-bio-title").addClass("intro-text")
     $("#dog-bio-text").addClass("intro-text")
     $("#surprise-me").show()

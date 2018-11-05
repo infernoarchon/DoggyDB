@@ -7,10 +7,18 @@ h5 {
     font-size: 1em;
 }
 
+h3 {
+    font-weight: 700;
+}
+
 /* Custom Classes */
 
+#intro-wrapper {
+    background-color: white;
+}
+
 .intro-card {
-    background-color: rgba(129, 92, 165, 0.831) !important;
+    min-height: 400px;
 }
 
 .invisible {
@@ -98,14 +106,12 @@ h5 {
     background-color: transparent !important;
 }
 .dog-img { 
-    background: url("../images/maltese.svg");
-    background-size: auto 80%;
+    background: url("../images/bg.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: right 20% bottom 50%;
 }
 
 .intro-text {
-    color: #fff;
     text-transform: none !important;
 }
 
@@ -151,7 +157,7 @@ h5 {
     line-height: 1em;
 }
 
-.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-5, .col-10 {
+.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10 {
     padding: 0;
     margin: 0;
 }
