@@ -1,5 +1,5 @@
 # DoggyDB
-An simple app to get dog gifs from GIPHY. 
+An simple app to get dog info and gifs from GIPHY. 
 
 ## APIs Used
 - https://developers.giphy.com/
