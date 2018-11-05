@@ -6,12 +6,12 @@ window.onload = function() {
 
 // On Click Events
     $(".dog-card").on("click", function() {
-      $("#intro-wrapper").addClass("invisible")
       dogapp.getgifs($(this).attr("data-name"),gifLimit)
+      dogapp.getbio($(this).attr("data-name"))
       console.log(gifOffset)
     });
     $(".navbar-brand").on("click", function() {
-      $("#intro-wrapper").removeClass("invisible")
+      dogapp.resetbio()
       $("#gif-area").html('')
     });
     $("#cancel-add").click(function(){
@@ -29,8 +29,8 @@ window.onload = function() {
       $("#myInput").val('')
       dogapp.adddog(getdog)
       $(".dog-card-added").on("click", function() {
-        $("#intro-wrapper").addClass("invisible")
         dogapp.getgifs($(this).attr("data-name"),gifLimit)
+        dogapp.getbio($(this).attr("data-name"))
         console.log(gifOffset)
       });
     });
@@ -38,6 +38,7 @@ window.onload = function() {
       var randomdog = dogdir[Math.floor(Math.random() * dogdir.length)];
       console.log(randomdog)
       dogapp.getgifs(randomdog,gifLimit)
+      dogapp.getbio(randomdog)
     })
 // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
@@ -60,16 +61,41 @@ var gifgroup = 0
 var giphydogs;
 var skipgif = false;
 var dogs = [
-  "Maltese", 
-  "Shiba Inu", 
-  "Pomeranian", 
-  "Golden Retriever",
-  "French Bulldog"
+  "maltese", 
+  "shiba inu", 
+  "pomeranian", 
+  "golden retriever",
+  "french bulldog"
 ]
-var alldogs = {
-  "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberg", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-miniature": "miniature poodle", "poodle-standard": "standard poodle", "poodle-toy": "toy poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
-}
+var doghelper = ["maltese","dalmatian", "boxer", "african", "samoyed", "newfoundland"]
+var spanielhelper = ["clumber"]
+var australianhelper = ["kelpie"]
+var welshcorgihelper = ["pembroke", "cardigan corgi"]
+var softcoathelper = ["wheaten terrier"]
+var alaskanhelper = ["malamute"]
+var americanhelper = ["eskimo"]
+var shorthairedhelper = ["german pointer"]
+var foxhoundhelper = ["english hound"]
+var walkerhelper = ["walker hound"]
+var bernardhelper = ["saint bernard"]
+var blenheimhelper = ["blenheim spaniel"]
+var chinhelper = ["japanese spaniel"]
+var bostonhelper = ["boston bulldog"]
+var brittanyhelper = ["brittany spaniel"]
+var staffordshirehelper = ["american terrier"]
+var lhasahelper = ["lhasa"]
+var chesapeakehelper = ["chesapeake retriever"]
+var springerhelper = ["welsh spaniel"]
+var appenzellerhelper = ["appenzeller"]
+var chihuahuahelper = ["chihuahua"]
+var longhairedhelper = ["german longhair pointer"]
+var cairnhelper = ["cairn"]
+var westhighlandhelper = ["westhighland terrier"]
+var terrierhelper = ["airedale"]
 
+var alldogs = {
+  "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberg", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-standard": "poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba inu", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
+}
 var dogdir = []
 
 var input = document.getElementById("myInput");
@@ -120,7 +146,7 @@ var dogapp = {
   getgifs : function(d, maxCategories) {
     skipgif = false
     var gifCount = 0;
-    dogapp.skipgif(d,"Maltese")
+    dogapp.skipgif(d,"maltese")
     if(lastdog !== d && lastdog && skipgif===false) {
       gifOffset=0
     }
@@ -131,7 +157,7 @@ var dogapp = {
         if(gifCount <= gifLimit) {
         var dtrim = d.replace(/\s/g, '');
         $.ajax({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + currentgif + "_dog&limit=1&offset=" + gifOffset + "&api_key=dc6zaTOxFJmzC",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + dogapp.searchhelper(currentgif) + "&limit=1&offset=" + gifOffset + "&api_key=dc6zaTOxFJmzC",
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
@@ -225,8 +251,159 @@ var dogapp = {
       gifOffset=1
       skipgif = true
     }
-  }
+  },
+  getbio : function(d) {
+    $("#dog-intro-card").removeClass("intro-card")
+    $("#dog-pic").removeClass("dog-img intro-card")
+    $("#dog-bio-title").removeClass("intro-text")
+    $("#dog-bio-text").removeClass("intro-text")
+    $("#surprise-me").hide()
+    $("#dog-bio-title").text(d)
+    var wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&suggest=true&search="
+    $.ajax({
+      url: wikiurl + dogapp.searchhelper(d),
+      method: "GET",
+      dataType: 'jsonp',
+      success: function(response) {
+        doginfo = response[2]
+        console.log(dogapp.searchhelper(d))
+        console.log(response)
+        $("#dog-bio-text").text(doginfo[0])
+    }
+     })
+    },
+    searchhelper : function(d) {
+      if (doghelper.includes(d)) {
+        if (d === "african") {
+          d = d + " wild"
+        }
+        d = d + " dog"
+        return d
+      }
+      if (spanielhelper.includes(d)) {
+        d = d + " spaniel"
+        return d
+      }
+      if (australianhelper.includes(d)) {
+        d = "australian " + d
+        return d
+      }
+      if (welshcorgihelper.includes(d)) {
+        if (d === "cardigan corgi") {
+          d = "cardigan"
+        }
+        d = d + " welsh corgi"
+        return d
+      }
+      if (softcoathelper.includes(d)) {
+        d = "soft-coated " + d
+        return d
+      }
+      if (alaskanhelper.includes(d)) {
+        d = "alaskan " + d
+        return d
+      }
+      if (americanhelper.includes(d)) {
+        d = "american " + d + " dog"
+        return d
+      }
+      if (shorthairedhelper.includes(d)) {
+        d = "german shorthaired pointer"
+        return d
+      }
+      if (foxhoundhelper.includes(d)) {
+        d = "english foxhound"
+        return d
+      }
+      if (walkerhelper.includes(d)) {
+        d = "treeing walker coonhound"
+        return d
+      }
+      if (bernardhelper.includes(d)) {
+        d = "st. bernard (dog)"
+        return d
+      }
+      if (blenheimhelper.includes(d)) {
+        d = "cavalier king charles spaniel"
+        return d
+      }
+      if (chinhelper.includes(d)) {
+        d = "japanese chin"
+        return d
+      }
+      if (bostonhelper.includes(d)) {
+        d = "boston terrier"
+        return d
+      }
+      if (brittanyhelper.includes(d)) {
+        d = "brittany dog"
+        return d
+      }
+      if (staffordshirehelper.includes(d)) {
+        d = "american staffordshire terrier"
+        return d
+      }
+      if (staffordshirehelper.includes(d)) {
+        d = "american staffordshire terrier"
+        return d
+      }
+      if (lhasahelper.includes(d)) {
+        d = d + " apso"
+        return d
+      }
+      if (chesapeakehelper.includes(d)) {
+        d = "chesapeake bay retriever"
+        return d
+      }
+      if (springerhelper.includes(d)) {
+        d = "welsh springer spaniel"
+        return d
+      }
+      if (appenzellerhelper.includes(d)) {
+        d = d + " sennenhund"
+        return d
+      }
+      if (chihuahuahelper.includes(d)) {
+        d = "chihuahua (dog)"
+        return d
+      }
+      if (longhairedhelper.includes(d)) {
+        d = "german longhaired pointer"
+        return d
+      }
+      if (cairnhelper.includes(d)) {
+        d = d + " terrier"
+        return d
+      }
+      if (westhighlandhelper.includes(d)) {
+        d = "west highland white terrier"
+        return d
+      }
+      if (terrierhelper.includes(d)) {
+        d = d + " terrier"
+        return d
+      }
+
+      else{
+      return d
+      }
+    },
+    resetbio : function () {
+    $("#dog-intro-card").addClass("intro-card")
+    $("#dog-pic").addClass("dog-img intro-card")
+    $("#dog-bio-title").addClass("intro-text")
+    $("#dog-bio-text").addClass("intro-text")
+    $("#surprise-me").show()
+    $("#dog-bio-title").text("Welcome to DoggyDB!")
+    $("#dog-bio-text").text("Feeling stressed? Having a ruff day? Just need some good 'ol eye bleach? Select a dog breed on the left and enjoy some quality dog gifs.")
+    }
 }
+
+
+
+
+
+
 
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,

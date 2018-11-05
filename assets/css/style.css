@@ -10,7 +10,6 @@ h5 {
 /* Custom Classes */
 
 .intro-card {
-    column-count: 1 !important;
     background-color: rgba(129, 92, 165, 0.831) !important;
 }
 
@@ -106,10 +105,14 @@ h5 {
 }
 
 .intro-text {
-    line-height: 1.5;
     color: #fff;
-    
+    text-transform: none !important;
 }
+
+#dog-bio-title, #dog-bio-text {
+    line-height: 1.5;
+}
+
 #gif-area .card-body {
     background-color: #fff;
 }
