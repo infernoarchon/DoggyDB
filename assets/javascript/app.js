@@ -3,15 +3,18 @@ window.onload = function() {
     $("#add-dog-form").hide();
     dogapp.getdogs()
     dogapp.getlist()
+    dogapp.gethero()
 
 // On Click Events
     $(".dog-card").on("click", function() {
-      dogapp.getgifs($(this).attr("data-name"),gifLimit)
-      dogapp.getbio($(this).attr("data-name"))
+      dogapp.getgifs($(this).attr("dog-name"),gifLimit)
+      dogapp.getbio($(this).attr("dog-name"))
+      dogapp.getdogpic($(this).attr("data-name"))
       console.log(gifOffset)
     });
     $(".navbar-brand").on("click", function() {
       dogapp.resetbio()
+      $(".dog-img").attr("style","background: url('" + unsplash + "')")
       $("#gif-area").html('')
     });
     $("#cancel-add").click(function(){
@@ -29,16 +32,17 @@ window.onload = function() {
       $("#myInput").val('')
       dogapp.adddog(getdog)
       $(".dog-card-added").on("click", function() {
-        dogapp.getgifs($(this).attr("data-name"),gifLimit)
-        dogapp.getbio($(this).attr("data-name"))
+        dogapp.getgifs($(this).attr("dog-name"),gifLimit)
+        dogapp.getbio($(this).attr("dog-name"))
+        dogapp.getdogpic($(this).attr("data-name"))
         console.log(gifOffset)
       });
     });
     $("#surprise-me").click(function() {
       var randomdog = dogdir[Math.floor(Math.random() * dogdir.length)];
-      console.log(randomdog)
       dogapp.getgifs(randomdog,gifLimit)
       dogapp.getbio(randomdog)
+      dogapp.getdogpic(getKeyByValue(alldogs,randomdog))
     })
 // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
@@ -60,6 +64,8 @@ var gifOffset = 0;
 var gifgroup = 0
 var giphydogs;
 var skipgif = false;
+var unsplash;
+
 var dogs = [
   "maltese", 
   "shiba inu", 
@@ -98,11 +104,13 @@ var bouvierhelper = ["bouvier"]
 var sheepdoghelper = ["english sheepdog"]
 var coonhoundhelper = ["redbone"]
 var dandiehelper = ["dandie terrier"]
+var shibahelper = ["shiba"]
 
 var alldogs = {
   "affenpinscher": "affenpinscher", "african": "african", "airedale": "airedale", "akita": "akita", "appenzeller": "appenzeller", "basenji": "basenji", "beagle": "beagle", "bluetick": "bluetick", "borzoi": "borzoi", "bouvier": "bouvier", "boxer": "boxer", "brabancon": "brabancon", "briard": "briard", "bulldog-boston": "boston bulldog", "bulldog-french": "french bulldog", "bullterrier-staffordshire": "staffordshire bullterrier", "cairn": "cairn", "cattledog-australian": "australian cattledog", "chihuahua": "chihuahua", "chow": "chow chow", "clumber": "clumber", "cockapoo": "cockapoo", "collie-border": "border collie", "coonhound": "coonhound", "corgi-cardigan": "cardigan corgi", "cotondetulear": "cotondetulear", "dachshund": "dachshund", "dalmatian": "dalmatian", "dane-great": "great dane", "deerhound-scottish": "scottish deerhound", "dhole": "dhole", "dingo": "dingo", "doberman": "doberman", "elkhound-norwegian": "norwegian elkhound", "entlebucher": "entlebucher", "eskimo": "eskimo", "frise-bichon": "bichon frise", "germanshepherd": "german shepherd", "greyhound-italian": "italian greyhound", "groenendael": "groenendael", "hound-afghan": "afghan hound", "hound-basset": "basset hound", "hound-blood": "blood hound", "hound-english": "english hound", "hound-ibizan": "ibizan hound", "hound-walker": "walker hound", "husky": "husky", "keeshond": "keeshond", "kelpie": "kelpie", "komondor": "komondor", "kuvasz": "kuvasz", "labrador": "labrador", "leonberg": "leonberger", "lhasa": "lhasa", "malamute": "malamute", "malinois": "malinois", "maltese": "maltese", "mastiff-bull": "bull mastiff", "mastiff-tibetan": "tibetan mastiff", "mexicanhairless": "mexican hairless", "mountain-bernese": "bernese mountain", "mountain-swiss": "swiss mountain", "newfoundland": "newfoundland", "otterhound": "otterhound", "papillon": "papillon", "pekinese": "pekinese", "pembroke": "pembroke", "pinscher-miniature": "miniature pinscher", "pointer-german": "german pointer", "pointer-germanlonghair": "german longhair pointer", "pomeranian": "pomeranian", "poodle-standard": "poodle", "pug": "pug", "puggle": "puggle", "pyrenees": "pyrenees", "redbone": "redbone", "retriever-chesapeake": "chesapeake retriever", "retriever-curly": "curly retriever", "retriever-flatcoated": "flatcoated retriever", "retriever-golden": "golden retriever", "ridgeback-rhodesian": "rhodesian ridgeback", "rottweiler": "rottweiler", "saluki": "saluki", "samoyed": "samoyed", "schipperke": "schipperke", "schnauzer-giant": "giant schnauzer", "schnauzer-miniature": "miniature schnauzer", "setter-english": "english setter", "setter-gordon": "gordon setter", "setter-irish": "irish setter", "sheepdog-english": "english sheepdog", "sheepdog-shetland": "shetland sheepdog", "shiba": "shiba inu", "shihtzu": "shih tzu", "spaniel-blenheim": "blenheim spaniel", "spaniel-brittany": "brittany spaniel", "spaniel-cocker": "cocker spaniel", "spaniel-irish": "irish spaniel", "spaniel-japanese": "japanese spaniel", "spaniel-sussex": "sussex spaniel", "spaniel-welsh": "welsh spaniel", "springer-english": "english springer", "stbernard": "saint bernard", "terrier-american": "american terrier", "terrier-australian": "australian terrier", "terrier-bedlington": "bedlington terrier", "terrier-border": "border terrier", "terrier-dandie": "dandie terrier", "terrier-fox": "fox terrier", "terrier-irish": "irish terrier", "terrier-kerryblue": "kerryblue terrier", "terrier-lakeland": "lakeland terrier", "terrier-norfolk": "norfolk terrier", "terrier-norwich": "norwich terrier", "terrier-patterdale": "patterdale terrier", "terrier-russell": "russell terrier", "terrier-scottish": "scottish terrier", "terrier-sealyham": "sealyham terrier", "terrier-silky": "silky terrier", "terrier-tibetan": "tibetan terrier", "terrier-toy": "toy terrier", "terrier-westhighland": "westhighland terrier", "terrier-wheaten": "wheaten terrier", "terrier-yorkshire": "yorkshire terrier", "vizsla": "vizsla", "weimaraner": "weimaraner", "whippet": "whippet", "wolfhound-irish": "irish wolfhound"
 }
 var dogdir = []
+
 
 var input = document.getElementById("myInput");
 
@@ -113,7 +121,7 @@ var dogapp = {
           dogdir.push(alldogs[key])
       }   
   }
-  console.log(dogdir)
+
   },
   getdogs : function() {
     for (var i = 0; i < dogs.length; i++) {
@@ -123,7 +131,8 @@ var dogapp = {
         // Adding a class to our button
         dcard.addClass("dog-card btn-light btn border-0 btn-block text-left");
         // Adding a data-attribute
-        dcard.attr("data-name", currentdog);
+        dcard.attr("dog-name",currentdog)
+        dcard.attr("data-name", getKeyByValue(alldogs,currentdog));
         // Providing the initial button text
         var dcardtitle = $("<div>");
         dcardtitle.addClass("dog-card-title");
@@ -140,7 +149,8 @@ var dogapp = {
         // Adding a class to our button
         dcard.addClass("dog-card-added btn-light btn border-0 btn-block text-left");
         // Adding a data-attribute
-        dcard.attr("data-name", currentdog);
+        dcard.attr("dog-name",currentdog)
+        dcard.attr("data-name", getKeyByValue(alldogs,currentdog));
         // Providing the initial button text
         var dcardtitle = $("<div>");
         dcardtitle.addClass("dog-card-title");
@@ -264,7 +274,7 @@ var dogapp = {
     $("#dog-intro-card").addClass("col-8")
     $("#dog-pic").removeClass("dog-img intro-card")
     $("#dog-pic").removeClass("col-7")
-    $("#dog-pic").addClass("col-4")
+    $("#dog-pic").addClass("col-3")
     $("#dog-bio-title").removeClass("intro-text")
     $("#dog-bio-text").removeClass("intro-text")
     $("#surprise-me").hide()
@@ -276,8 +286,6 @@ var dogapp = {
       dataType: 'jsonp',
       success: function(response) {
         doginfo = response[2]
-        console.log(dogapp.searchhelper(d))
-        console.log(response)
         $("#dog-bio-text").text(doginfo[0])
     }
      })
@@ -427,20 +435,40 @@ var dogapp = {
     $("#dog-intro-card").removeClass("col-8")
     $("#dog-intro-card").addClass("col-5")
     $("#dog-pic").addClass("dog-img intro-card")
-    $("#dog-pic").removeClass("col-4")
+    $("#dog-pic").removeClass("col-3")
     $("#dog-pic").addClass("col-7")
     $("#dog-bio-title").addClass("intro-text")
     $("#dog-bio-text").addClass("intro-text")
     $("#surprise-me").show()
     $("#dog-bio-title").text("Welcome to DoggyDB!")
     $("#dog-bio-text").text("Feeling stressed? Having a ruff day? Just need some good 'ol eye bleach? Select a dog breed on the left and enjoy some quality dog gifs.")
+    },
+    gethero : function() {
+      $.ajax({
+        url: "https://api.unsplash.com/photos/random?client_id=822166163a7b2545ddf3fb9ca64b5246ede5b8d7b18a8b38703665bbe948adc9&query=dog&orientation=landscape",
+        method: "GET",
+        success: function(response) {
+          unsplash = response.urls.full
+          $("#dog-pic").attr("style","background: url('" + unsplash + "')")
+      }
+    })
+    },
+    getdogpic : function(d) {
+      var dogpicurl = "https://dog.ceo/api/breed/" + d + "/images/random"
+      console.log(dogpicurl)
+      $.ajax({
+        url: dogpicurl,
+        method: "GET",
+        success: function(response) {
+          $("#dog-pic").attr("style","background: url('" + response.message + "')")
+        }
+      })
     }
 }
 
-
-
-
-
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
 
 
 function autocomplete(inp, arr) {

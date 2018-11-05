@@ -105,10 +105,9 @@ h3 {
     border-radius: 0px !important;
     background-color: transparent !important;
 }
-.dog-img { 
-    background: url("../images/bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+
+#dog-pic {
+    background-size: cover !important;
 }
 
 .intro-text {
