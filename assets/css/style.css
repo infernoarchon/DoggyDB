@@ -85,7 +85,6 @@ h3 {
     text-transform: capitalize;
 }
 
-
 /* Bootstrap/Font Awesome Overrides */
 
 
@@ -226,6 +225,12 @@ h3 {
 
 
 /* Media Queries */
+@media (max-width: 700px) {
+    #dog-pic {
+        display: none;
+    }
+}
+
 
 @media (max-width: 1000px) {
     .left-nav {
@@ -234,9 +239,6 @@ h3 {
       .left-nav-dead {
         display:none;
       }
-    #dog-pic {
-        display: none;
-    }
 }
 @media (min-width: 500px) {
     .card-columns {
@@ -246,7 +248,7 @@ h3 {
     }
   }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
     .card-columns {
         -webkit-column-count:2;
         -moz-column-count:2;
