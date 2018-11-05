@@ -163,6 +163,7 @@ var dogapp = {
     skipgif = false
     var gifCount = 0;
     dogapp.skipgif(d,"maltese")
+    dogapp.skipgif(d,"doberman")
     if(lastdog !== d && lastdog && skipgif===false) {
       gifOffset=0
     }
