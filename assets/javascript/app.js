@@ -441,7 +441,7 @@ var dogapp = {
     $("#dog-bio-text").addClass("intro-text")
     $("#surprise-me").show()
     $("#dog-bio-title").text("Welcome to DoggyDB!")
-    $("#dog-bio-text").text("Feeling stressed? Having a ruff day? Just need some good 'ol eye bleach? Relax, sit back and enjoy some high-quality dog gifs.")
+    $("#dog-bio-text").text("Feeling stressed? Having a ruff day? Just need some good 'ol eye bleach? Then sit back, relax, and enjoy some high-quality dog gifs.")
     },
     gethero : function() {
       $.ajax({
