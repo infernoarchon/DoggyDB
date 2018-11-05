@@ -270,11 +270,11 @@ var dogapp = {
   },
   getbio : function(d) {
     $("#dog-intro-card").removeClass("intro-card")
-    $("#dog-intro-card").removeClass("col-5")
-    $("#dog-intro-card").addClass("col-8")
+    $("#dog-intro-card").removeClass("col-md-5")
+    $("#dog-intro-card").addClass("col-md-8")
     $("#dog-pic").removeClass("dog-img intro-card")
-    $("#dog-pic").removeClass("col-7")
-    $("#dog-pic").addClass("col-3")
+    $("#dog-pic").removeClass("col-md-7")
+    $("#dog-pic").addClass("col-md-3")
     $("#dog-bio-title").removeClass("intro-text")
     $("#dog-bio-text").removeClass("intro-text")
     $("#surprise-me").hide()
@@ -432,11 +432,11 @@ var dogapp = {
     },
     resetbio : function () {
     $("#dog-intro-card").addClass("intro-card")
-    $("#dog-intro-card").removeClass("col-8")
-    $("#dog-intro-card").addClass("col-5")
+    $("#dog-intro-card").removeClass("col-md-8")
+    $("#dog-intro-card").addClass("col-md-5")
     $("#dog-pic").addClass("dog-img intro-card")
-    $("#dog-pic").removeClass("col-3")
-    $("#dog-pic").addClass("col-7")
+    $("#dog-pic").removeClass("col-md-3")
+    $("#dog-pic").addClass("col-md-7")
     $("#dog-bio-title").addClass("intro-text")
     $("#dog-bio-text").addClass("intro-text")
     $("#surprise-me").show()

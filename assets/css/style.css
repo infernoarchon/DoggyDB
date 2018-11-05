@@ -165,7 +165,7 @@ h3 {
     line-height: 1em;
 }
 
-.container-fluid,.row, .col, .col-12,.col-2, .col-4, .col-10 {
+.container-fluid,.row, .col,.col-2, .col-4, .col-10 {
     padding: 0;
     margin: 0;
 }
@@ -237,6 +237,9 @@ h3 {
       .left-nav-dead {
         display:none;
       }
+    #dog-pic {
+        display: none;
+    }
 }
 @media (min-width: 500px) {
     .card-columns {
