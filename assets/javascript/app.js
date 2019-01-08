@@ -73,7 +73,7 @@ var dogs = [
   "golden retriever",
   "french bulldog"
 ]
-var doghelper = ["maltese", "pomeranian", "dalmatian", "boxer", "african", "samoyed", "newfoundland", "malinois", "mexican hairless", "papillon"]
+var doghelper = ["maltese", "pomeranian", "dalmatian", "boxer", "african", "samoyed", "newfoundland", "malinois", "mexican hairless", "papillon","labrador"]
 var spanielhelper = ["clumber"]
 var australianhelper = ["kelpie", "silky terrier"]
 var welshcorgihelper = ["pembroke", "cardigan corgi"]
