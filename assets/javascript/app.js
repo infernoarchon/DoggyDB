@@ -65,6 +65,7 @@ var gifgroup = 0
 var giphydogs;
 var skipgif = false;
 var unsplash;
+var dProper;
 
 var dogs = [
   "maltese", 
@@ -460,8 +461,9 @@ var dogapp = {
     })
     },
     getdogpic : function(d) {
+      dProper = d
       if(d.includes("-")) {
-        var dProper = d.replace("-","/")
+        dProper = d.replace("-","/")
       }
       var dogpicurl = "https://dog.ceo/api/breed/" + dProper + "/images/random"
       console.log(dogpicurl)
