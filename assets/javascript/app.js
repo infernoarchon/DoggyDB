@@ -460,17 +460,22 @@ var dogapp = {
     })
     },
     getdogpic : function(d) {
-      var dogpicurl = "https://dog.ceo/api/breed/" + d + "/images/random"
+      if(d.includes("-")) {
+        var dProper = d.replace("-","/")
+      }
+      var dogpicurl = "https://dog.ceo/api/breed/" + dProper + "/images/random"
       console.log(dogpicurl)
       $.ajax({
         url: dogpicurl,
         method: "GET",
-        statusCode: {
-          404: function() {
-            console.log( "page not found" );
-          }
-        },
+        // statusCode: {
+        //   404: function() {
+        //     console.log( "page not found" );
+        //     $("#dog-pic").attr("style","opacity: 0")
+        //   }
+        // },
         success: function(response) {
+          // $("#dog-pic").attr("style","opacity: 1")
           $("#dog-pic").attr("style","background: url('" + response.message + "')")
         }
       })
