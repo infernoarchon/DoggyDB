@@ -465,6 +465,11 @@ var dogapp = {
       $.ajax({
         url: dogpicurl,
         method: "GET",
+        statusCode: {
+          404: function() {
+            console.log( "page not found" );
+          }
+        },
         success: function(response) {
           $("#dog-pic").attr("style","background: url('" + response.message + "')")
         }
