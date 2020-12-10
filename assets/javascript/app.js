@@ -176,7 +176,7 @@ var dogapp = {
         if(gifCount <= gifLimit) {
         var dtrim = d.replace(/\s/g, '');
         $.ajax({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + dogapp.searchhelper(currentgif) + "&limit=1&offset=" + gifOffset + "&api_key=sjv1E2EK4CYM8IxZ8xrFG3NvpMPG4Q4u",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + dogapp.searchhelper(currentgif) + "&limit=1&offset=" + gifOffset + "&rating=g&api_key=sjv1E2EK4CYM8IxZ8xrFG3NvpMPG4Q4u",
             method: "GET",
             success: function(response) {
                 if (gifCount <= maxCategories) {
