@@ -448,7 +448,7 @@ var dogapp = {
     $("#dog-bio-text").addClass("intro-text")
     $("#surprise-me").show()
     $("#dog-bio-title").text("Welcome to DoggyDB!")
-    $("#dog-bio-text").text("Feeling stressed? Having a ruff day? Just need some good 'ol eye bleach? Then sit back, relax, and enjoy some high-quality dog gifs.")
+    $("#dog-bio-text").text("Feeling like you're in the doghouse or having a ruff day? Paws what you're doing and fetch yourself some tail-wagging joy! Sit, stay, and roll over into DoggyDB, where the most pup-tastic dog GIFs from Giphy are unleashed just for you. And here's the best treat: no ads now or fur-ever. Woof, it's time to treat yourself to some paw-some eye bleach!")
     },
     gethero : function() {
       $.ajax({
